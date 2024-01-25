@@ -5,7 +5,10 @@ const BookmarkController = require('../controllers/bookmarkController');
 const authentication = require('../middlewares/authentication');
 
 router.get('/', (req,res) => {
-    res.send('Hello World');
+    res.send({
+        port:process.env.PORT,
+        node_env:process.env.NODE_ENV
+    });
 });
 
 router.post('/users/register', UserController.Register);
