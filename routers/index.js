@@ -4,6 +4,9 @@ const UserController = require('../controllers/userController');
 const BookmarkController = require('../controllers/bookmarkController');
 const authentication = require('../middlewares/authentication');
 
+router.get('/', (req,res) => {
+    res.send('Hello World');
+});
 
 router.post('/users/register', UserController.Register);
 

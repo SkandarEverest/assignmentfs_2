@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch --detectOpenHandles",
-    "dev": "nodemon bin/http"
+    "dev": "nodemon bin/http",
+    "start": "node bin/http"
   },
   "keywords": [],
   "author": "",
