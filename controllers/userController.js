@@ -8,7 +8,7 @@ class UserController {
     static async Register(req, res, next) {
         try {
             const { username, email, password, role, address, phoneNumber } = req.body;
-            if (!username || !password || !email) throw ({ name: `${!email ? 'Email' : !password  ? 'Password': 'Username'} is null` })
+            if (!username || !password || !email) throw ({ name: `${!email ? 'email' : !password  ? 'password': 'username'} is null` })
 
             let o = await User.findOne({where : {email: email}});
             if (o) {
@@ -33,7 +33,11 @@ class UserController {
     static async Login(req, res, next) {
         try {
             const { email, password } = req.body;
-            if (!password || !email) throw ({ name: `${!email ? 'Email' : 'Password'} is null` });
+            if (!password || !email) throw ({ name: `${!email ? 'email' : 'password'} is null` });
+
+            if (!emailRegexp.test(email)){
+                throw ({ name: "invalid email format" });
+            }
 
             let user = await User.findOne({
                 where: {
@@ -41,15 +45,10 @@ class UserController {
                 }
             }
             )
-            if (!user) throw ({ name: "invalid email / password" });
+            if (!user) throw ({ name: "invalid email" });
 
             const isCorrect = comparePassword(password, user.password);
-            if (!isCorrect) throw ({ name: "invalid email / password" });
-
-            let payload = {
-                id: user.id,
-                email: user.email
-            }
+            if (!isCorrect) throw ({ name: "invalid password" });
 
             const token = generateToken({ id: user.id, email: email })
             
