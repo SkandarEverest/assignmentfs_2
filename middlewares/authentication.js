@@ -11,23 +11,22 @@ async function authentication(req, res, next) {
         //Get token from string
         const bearerToken = bearer[1];
 
+        if (!bearerToken) throw ({ name: "AuthenticationError" })
 
-        console.log(bearerToken);
-        // if (!access_token) throw ({ name: "AuthenticationError" })
-
-        // const verified = verifyToken(access_token)
-        // if (!verified) throw ({ name: "AuthenticationError" })
+        const userDecoded = verifyToken(bearerToken);
         
-        // const user = await User.findByPk(verified.id)
-        // // console.log('user>>',user)
-        // if (!user) throw ({ name: "AuthenticationError" })
-        // req.user = {
-        //     id: verified.id,
-        //     email: verified.email
-        // }
+        const user = await User.findOne({
+            where:{
+                id: userDecoded.id,
+                email: userDecoded.email
+            }
+        })
+        // console.log('user>>',user)
+        if (!user) throw ({ name: "AuthenticationError" })
+        res.locals.user = user;
         next()
     } catch (error) {
-        res.status(401).json({ code: 500, message: [error.name] })
+        res.status(401).json({ code: 401, message: [error.name] })
     }
 }
 
