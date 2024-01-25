@@ -1,0 +1,20 @@
+{
+    "movies": [
+        {
+            "title":"Doraemon: Nobita's Dinosaur - 2006",
+            "synopsis": "Doraemon: Nobita's Dinosaur - 2006, also known as Doraemo: The Movie 2006 and Doraemon and the Little Dinosaur, is a traditionally animated feature film which is a remake of the first, 1980, Doraemon film Doraemon: Nobita's Dinosaur.",
+            "trailerUrl": "https://www.youtube.com/embed/ludlBviHgzQ",
+            "imgUrl": "https://ik.imagekit.io/77pzczg37zw/doraemon-poster-1.jpg",
+            "rating": 5,
+            "status": "active"
+        },
+        {
+            "title":"Harry Potter",
+            "synopsis": "A house-elf warns Harry against returning to Howgwarts, but he decides to ignore it. When students and creatures at the school begin to get petrified, Harry finds himself surrounded in mystery.",
+            "trailerUrl": "https://www.youtube.com/embed/VyHV0BRtdxo",
+            "imgUrl": "https://ik.imagekit.io/77pzczg37zw/HP.jpg",
+            "rating": 4,
+            "status": "active"
+        }
+    ]
+}

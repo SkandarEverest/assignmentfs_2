@@ -1,5 +1,5 @@
 const { comparePassword } = require('../helpers/bcrypt')
-// const { signToken } = require('../helpers/jwt')
+const { generateToken } = require('../helpers/jwt')
 const { User } = require('../models');
 
 const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -46,15 +46,14 @@ class UserController {
             const isCorrect = comparePassword(password, user.password);
             if (!isCorrect) throw ({ name: "invalid email / password" });
 
-            // const token = signToken({ id: user.id, email: email })
-            // user = await User.findByPk(user.id, {
-            //     attributes: {
-            //         exclude: ['createdAt', 'updatedAt', 'password']
-            //     }
-            // })
+            let payload = {
+                id: user.id,
+                email: user.email
+            }
 
-            // res.status(200).json({ access_token: token, dataUser: user })
-            res.status(200).json({ dataUser: user })
+            const token = generateToken({ id: user.id, email: email })
+            
+            res.status(200).json({ accessToken: token, username: user.username, role: user.role, id: user.id});
         } catch (error) {
             res.status(500).json({ code: 500, message: [error.name] })
         }
