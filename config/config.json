@@ -1,17 +1,11 @@
 {
   "development": {
     "username": "postgres",
-    "password": "gC26g23-bB-gAFEfCFC2DeGE**be*6cc",
-    "database": "railway",
-    "host": "monorail.proxy.rlwy.net",
-    "port": "20877",
-    "dialect": "postgres",
-    "pool":{
-      "max":5,
-      "min":0,
-      "acquire":30000,
-      "idle":10000
-    }
+    "password": "postgres",
+    "database": "movie_collection",
+    "host": "127.0.0.1",
+    "port": "5435",
+    "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
